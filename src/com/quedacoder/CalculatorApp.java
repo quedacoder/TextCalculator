@@ -3,7 +3,7 @@ package com.quedacoder;
 /**
  * Main program for the Text Calculator Application
  * Users will be able use Text Calculator to perform
- * Addition, Subtraction, Multiplecation, division,
+ * Addition, Subtraction, Multiplication, division,
  * Modulo Division, Raise to Any Power, get Any Root
  *
  */
