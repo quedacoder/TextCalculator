@@ -1,5 +1,6 @@
 package com.quedacoder;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -49,8 +50,8 @@ public class CalculatorApp {
 			
 			//------- Prompt the user for input of operator --------//
 			if (!quit) {
-				userInput = promptUserInput(scanner, "Enter your operator and press return:");
-				quit = checkUserQuit(userInput);
+				operation = promptUserInput(scanner, "Enter your operator and press return:");
+				quit = checkUserQuit(operation);
 			}
 			
 			if (!quit) {
@@ -65,6 +66,21 @@ public class CalculatorApp {
 			    
 			//------ Perform operation based on user input ------//
 			if (!quit) {
+				
+				switch (operation) {
+					case "+":
+						break;
+					case "-":
+						break;
+					case "*":
+						break;
+					case "%":
+						break;
+					case "/":
+						break;
+					default:
+						break;
+				}
 				
 			}
 			 
