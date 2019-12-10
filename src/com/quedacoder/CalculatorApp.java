@@ -36,7 +36,7 @@ public class CalculatorApp {
 			//------ New Line ------//
 			System.out.println();
 			
-			//------ Prompt the user for input of first number
+			//------ Prompt the user for input of first number ------//
 			userInput = promptUserInput(scanner, "Enter your first number (or a command) and press return:");
 			
 			// check if user wants to quit 
@@ -54,6 +54,7 @@ public class CalculatorApp {
 				quit = checkUserQuit(operation);
 			}
 			
+			//------ Prompt the user for input of second number ------//
 			if (!quit) {
 				userInput = promptUserInput(scanner, "Enter your second number and press return:");
 				quit = checkUserQuit(userInput);
@@ -69,16 +70,22 @@ public class CalculatorApp {
 				
 				switch (operation) {
 					case "+":
+						result = firstNumber + secondNumber;
 						break;
 					case "-":
+						result = firstNumber - secondNumber;
 						break;
 					case "*":
+						result = firstNumber * secondNumber;
 						break;
 					case "%":
+						result = firstNumber % secondNumber;
 						break;
 					case "/":
+						result = firstNumber / secondNumber;
 						break;
 					default:
+						// throw exception operator not found
 						break;
 				}
 				
