@@ -1,7 +1,11 @@
 package com.quedacoder;
 
-import java.io.IOException;
 import java.util.Scanner;
+
+import com.quedacoder.classes.FactoryProvider;
+import com.quedacoder.enums.Operations;
+import com.quedacoder.interfaces.AbstractFactory;
+import com.quedacoder.interfaces.IOperation;
 
 /**
  * Main program for the Text Calculator Application
@@ -26,6 +30,7 @@ public class CalculatorApp {
 		String operation = "";
 		String userInput = "";
 		boolean specialCommand = false;
+		AbstractFactory<?> operationsFactory = FactoryProvider.getFactory("Operation");
 		
 		
 		boolean quit = false;
@@ -42,53 +47,72 @@ public class CalculatorApp {
 			// check if user wants to quit 
 			quit = checkUserQuit(userInput);
 			
-			//-------- Handle users first input if not quit --------//
+			//------ Check for a special operation or calc function ------//
 			if (!quit) {
+				
+			}
+			
+			//-------- Handle users first input if not quit --------//
+			if (!quit && !specialCommand) {
 				firstNumber = Double.parseDouble(userInput);
 			}
 				
 			
 			//------- Prompt the user for input of operator --------//
-			if (!quit) {
+			if (!quit  && !specialCommand) {
 				operation = promptUserInput(scanner, "Enter your operator and press return:");
 				quit = checkUserQuit(operation);
 			}
 			
 			//------ Prompt the user for input of second number ------//
-			if (!quit) {
+			if (!quit  && !specialCommand) {
 				userInput = promptUserInput(scanner, "Enter your second number and press return:");
 				quit = checkUserQuit(userInput);
 			}
 				
 			//------ Handle users second input if not quit ------//
-			if (!quit) {
+			if (!quit  && !specialCommand) {
 				secondNumber = Double.parseDouble(userInput);
 			}
 			    
 			//------ Perform operation based on user input ------//
-			if (!quit) {
+			if (!quit  && !specialCommand) {
 				
-				switch (operation) {
+				Operations operationType = null;
+
+				switch(operation) {
 					case "+":
-						result = firstNumber + secondNumber;
+						operationType = Operations.ADDITION;
 						break;
 					case "-":
-						result = firstNumber - secondNumber;
+						operationType = Operations.SUBTRACTION;
 						break;
 					case "*":
-						result = firstNumber * secondNumber;
+						operationType = Operations.MULTIPLICATION;
 						break;
 					case "%":
-						result = firstNumber % secondNumber;
+						operationType = Operations.MODULO;
 						break;
 					case "/":
-						result = firstNumber / secondNumber;
+						operationType = Operations.DIVISION;
+						break;
+					case "^":
+						operationType = Operations.POWER;
+						break;
+					case "":
+						operationType = Operations.ROOT;
 						break;
 					default:
 						// throw exception operator not found
 						break;
 				}
 				
+				//------ Perform Operation ------//
+				IOperation operationChoice = operationsFactory.create(operationType.getDisplayValue());
+			    result = operationChoice.calculate(firstNumber, secondNumber);
+			    printResult(result, operation, firstNumber, secondNumber);
+			    
+			    
 			}
 			 
 		}
@@ -115,6 +139,11 @@ public class CalculatorApp {
 		return quit;
 	}
 	
-	
+	public static void printResult(double result, String operation, double number1, double number2) {
+		
+		System.out.printf("%.2f %s %.2f = %.2f", number1, operation, number2, result);
+		System.out.println();
+		
+	}
 
 }
