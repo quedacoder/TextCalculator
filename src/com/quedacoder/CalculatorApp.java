@@ -37,7 +37,7 @@ public class CalculatorApp {
 		Scanner scanner = new Scanner(System.in);
 
 		while (!quit) {
-			
+
 			error = false;
 
 			// ------ New Line ------//
@@ -56,16 +56,23 @@ public class CalculatorApp {
 
 			// -------- Handle users first input if not quit --------//
 			if (!quit && !specialCommand && !error) {
-				firstNumber = Double.parseDouble(userInput);
+				try {
+					firstNumber = convertInputToDouble(userInput);
+				} catch (Exception e) {
+					System.out.println();
+					System.err.println(e.getMessage() + " is not a valid number or calc function");
+					System.err.println("Please try again or type HELP for supported numbers and functions");
+					error = true;
+				}
 			}
 
 			// ------- Prompt the user for input of operator --------//
 			if (!quit && !specialCommand && !error) {
-				operation = promptUserInput(scanner, "Enter your operator and press return:");
-				quit = checkUserQuit(operation);
 
 				// ------ Check operation entered ------//
 				try {
+					operation = promptUserInput(scanner, "Enter your operator and press return:");
+					quit = checkUserQuit(operation);
 					operationType = checkUserOperationType(operation);
 				} catch (InvalidCalculatorOperation e) {
 					System.out.println();
@@ -84,7 +91,14 @@ public class CalculatorApp {
 
 			// ------ Handle users second input if not quit ------//
 			if (!quit && !specialCommand && !error) {
-				secondNumber = Double.parseDouble(userInput);
+				try {
+					secondNumber = convertInputToDouble(userInput);
+				} catch (Exception e) {
+					System.out.println();
+					System.err.println(e.getMessage() + " is not a valid number");
+					System.err.println("Please try again or type HELP for supported numbers");
+					error = true;
+				}
 			}
 
 			// ------ Perform operation based on user input ------//
@@ -103,7 +117,11 @@ public class CalculatorApp {
 
 	}
 
-	private static Operations checkUserOperationType(String operation) throws InvalidCalculatorOperation {
+	public static double convertInputToDouble(String userInput) throws NumberFormatException {
+		return Double.parseDouble(userInput);
+	}
+
+	public static Operations checkUserOperationType(String operation) throws InvalidCalculatorOperation {
 
 		Operations operationType = null;
 
