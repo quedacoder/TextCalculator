@@ -33,6 +33,9 @@ public class OperationFactory implements AbstractFactory<IOperation>{
 			case "division":
 				opp = new Division();
 				break;
+			case "power":
+				opp = new Power();
+				break;
 			default:
 				// throws exception
 				break;
