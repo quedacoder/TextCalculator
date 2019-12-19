@@ -8,10 +8,15 @@ import com.quedacoder.interfaces.IOperation;
 
 /**
  * @author quedacoder
- *
+ * Factory class to handle the creation of Calculator operation classes
  */
 public class OperationFactory implements AbstractFactory<IOperation>{
 
+	/**
+	 * Creates class instance of operation given that implements a common interface IOperation
+	 * @param operationType
+	 * @return IOperation
+	 */
 	@Override
 	public IOperation create(String operationType) {
 		
@@ -36,8 +41,8 @@ public class OperationFactory implements AbstractFactory<IOperation>{
 			case "power":
 				opp = new Power();
 				break;
-			default:
-				// throws exception
+			case "root":
+				opp = new Root();
 				break;
 		}		
 		return opp;

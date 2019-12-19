@@ -39,22 +39,29 @@ public class CalculatorApp {
 		while (!quit) {
 
 			error = false;
+			specialCommand = false;
 
-			// ------ New Line ------//
+			// ------ New Line ------ //
 			System.out.println();
 
-			// ------ Prompt the user for input of first number ------//
+			// ------ Prompt the user for input of first number ------ //
 			userInput = promptUserInput(scanner, "Enter your first number (or a command) and press return:");
 
 			// check if user wants to quit
 			quit = checkUserQuit(userInput);
 
-			// ------ Check for a special operation or calc function ------//
+			// ------ Check for a special operation or calc function ------ //
 			if (!quit) {
+
+				if (userInput.equalsIgnoreCase("help")) {
+					specialCommand = true;
+
+					// ------ Read help documentation from file and output ------ //
+				}
 
 			}
 
-			// -------- Handle users first input if not quit --------//
+			// -------- Handle users first input if not quit -------- //
 			if (!quit && !specialCommand && !error) {
 				try {
 					firstNumber = convertInputToDouble(userInput);
@@ -66,10 +73,10 @@ public class CalculatorApp {
 				}
 			}
 
-			// ------- Prompt the user for input of operator --------//
+			// ------- Prompt the user for input of operator -------- //
 			if (!quit && !specialCommand && !error) {
 
-				// ------ Check operation entered ------//
+				// ------ Check operation entered ------ //
 				try {
 					operation = promptUserInput(scanner, "Enter your operator and press return:");
 					quit = checkUserQuit(operation);
@@ -83,13 +90,13 @@ public class CalculatorApp {
 
 			}
 
-			// ------ Prompt the user for input of second number ------//
+			// ------ Prompt the user for input of second number ------ //
 			if (!quit && !specialCommand && !error) {
 				userInput = promptUserInput(scanner, "Enter your second number and press return:");
 				quit = checkUserQuit(userInput);
 			}
 
-			// ------ Handle users second input if not quit ------//
+			// ------ Handle users second input if not quit ------ //
 			if (!quit && !specialCommand && !error) {
 				try {
 					secondNumber = convertInputToDouble(userInput);
@@ -101,10 +108,10 @@ public class CalculatorApp {
 				}
 			}
 
-			// ------ Perform operation based on user input ------//
+			// ------ Perform operation based on user input ------ //
 			if (!quit && !specialCommand && !error) {
 
-				// ------ Perform Operation ------//
+				// ------ Perform Operation ------ //
 				IOperation operationChoice = operationsFactory.create(operationType.getDisplayValue());
 				result = operationChoice.calculate(firstNumber, secondNumber);
 				printResult(result, operation, firstNumber, secondNumber);
@@ -117,10 +124,36 @@ public class CalculatorApp {
 
 	}
 
+	/**
+	 * Helper Method - convertInputToDouble converts users input to a double data
+	 * type
+	 * 
+	 * @param userInput String
+	 * @return double
+	 */
 	public static double convertInputToDouble(String userInput) throws NumberFormatException {
-		return Double.parseDouble(userInput);
+
+		double convertedNumber = 0.00;
+
+		if (userInput.equalsIgnoreCase("pi")) {
+			convertedNumber = Math.PI;
+		} else {
+			convertedNumber = Double.parseDouble(userInput);
+		}
+
+		return convertedNumber;
 	}
 
+	/**
+	 * Helper Method - checkUserOperationType validate user is only using operations
+	 * that are supported by the application. Throw InvalidCalculatorOperation
+	 * exception if operation entered is not supported
+	 * 
+	 * @param operation String
+	 * @return enums
+	 * @throws InvalidCalculatorOperation
+	 *
+	 */
 	public static Operations checkUserOperationType(String operation) throws InvalidCalculatorOperation {
 
 		Operations operationType = null;
@@ -144,7 +177,7 @@ public class CalculatorApp {
 		case "^":
 			operationType = Operations.POWER;
 			break;
-		case "":
+		case "R":
 			operationType = Operations.ROOT;
 			break;
 		default:
@@ -155,6 +188,14 @@ public class CalculatorApp {
 		return operationType;
 	}
 
+	/**
+	 * Helper Method - promptUserInput prompts the user for input
+	 * 
+	 * @param scanner    Scanner
+	 * @param userPrompt String
+	 * @return String
+	 *
+	 */
 	public static String promptUserInput(Scanner scanner, String userPrompt) {
 
 		System.out.println(userPrompt);
@@ -162,6 +203,13 @@ public class CalculatorApp {
 
 	}
 
+	/**
+	 * Helper Method - checkUserQuit gives user access to quit at any given time
+	 * 
+	 * @param input String
+	 * @return boolean
+	 *
+	 */
 	public static boolean checkUserQuit(String input) {
 
 		boolean quit = false;
@@ -173,6 +221,16 @@ public class CalculatorApp {
 		return quit;
 	}
 
+	/**
+	 * Helper Method - printResult prints a formatted message of the user operation
+	 * and result
+	 * 
+	 * @param result    double
+	 * @param operation String
+	 * @param number1   double
+	 * @param nubmer2   double
+	 *
+	 */
 	public static void printResult(double result, String operation, double number1, double number2) {
 
 		System.out.printf("%.2f %s %.2f = %.2f", number1, operation, number2, result);
