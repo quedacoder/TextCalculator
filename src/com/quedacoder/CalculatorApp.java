@@ -1,6 +1,11 @@
 package com.quedacoder;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import com.quedacoder.classes.FactoryProvider;
 import com.quedacoder.enums.Operations;
@@ -45,7 +50,7 @@ public class CalculatorApp {
 			System.out.println();
 
 			// ------ Prompt the user for input of first number ------ //
-			userInput = promptUserInput(scanner, "Enter your first number (or a command) and press return:");
+			userInput = promptUserInput(scanner, "Enter your first number (or HELP) and press return:");
 
 			// check if user wants to quit
 			quit = checkUserQuit(userInput);
@@ -57,6 +62,7 @@ public class CalculatorApp {
 					specialCommand = true;
 
 					// ------ Read help documentation from file and output ------ //
+					readHelpDocumentation();
 				}
 
 			}
@@ -236,6 +242,35 @@ public class CalculatorApp {
 		System.out.printf("%.2f %s %.2f = %.2f", number1, operation, number2, result);
 		System.out.println();
 
+	}
+	
+	public static void readHelpDocumentation() {
+		
+		// give file path
+		String file = "help/help.txt";
+		
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			
+			Stream fileLines = reader.lines();
+			
+			Object[] output = fileLines.toArray();
+			
+			for (Object o : output) {
+				
+				System.out.println(o.toString());
+				
+			}
+			
+			reader.close();
+			
+		} catch (FileNotFoundException e) {
+			System.out.println();
+			System.err.println(e.getMessage());
+		} catch (IOException e) {
+			System.out.println();
+			System.err.println(e.getMessage());
+		}
 	}
 
 }

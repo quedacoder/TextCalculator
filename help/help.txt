@@ -1,0 +1,29 @@
+*********************************************************
+*-----             HELP DOCUMENTATION              -----*
+*********************************************************
+
+*----- SUPPORTED FUNCTIONS
+**-- HELP - function to display supported function and
+            operations that can be used with the Calculator
+            
+*----- SUPPORTED OPERATIONS
+
+-----------------------------------------------------------
+| Operation Symbol | Description                          |
+-------------------|--------------------------------------|
+| +                | Add two numbers together and provide |
+|                  | the result                           |
+-----------------------------------------------------------
+| /                | Divide two numbers and provide result|
+-----------------------------------------------------------
+| %                | Provide the remainder of first input |
+|                  | divided by the second input          |
+-----------------------------------------------------------
+| *                | Muliply two number and provide result|
+-----------------------------------------------------------
+| ^                | Raise first number to the power of   |
+|                  | the second number                    |
+-----------------------------------------------------------
+| R                | Provide Nth Root of second number    |
+|                  | entered                              |
+-----------------------------------------------------------
