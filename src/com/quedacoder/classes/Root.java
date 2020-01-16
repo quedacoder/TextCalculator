@@ -1,18 +1,18 @@
 package com.quedacoder.classes;
 
-import com.quedacoder.interfaces.IOperation;
+import com.quedacoder.interfaces.IOperationable;
 
 /**
  * @author quedacoder Class to calculate the root of any number
  */
-public class Root implements IOperation {
+public class Root implements IOperationable {
 
 	/**
-	 * calculate method - implements IOperation interfaces and performs root of a
+	 * calculate method - implements IOperationable interfaces and performs root of a
 	 * given number
 	 * 
-	 * @param firstNumber  double
-	 * @param secondNumber double
+	 * @param ninthNumber  double
+	 * @param baseNumber double
 	 * @return double
 	 */
 	@Override

@@ -11,8 +11,8 @@ public interface AbstractFactory<T> {
 	/**
 	 * Creates instance of type
 	 * @param operationType String
-	 * @return IOperation
+	 * @return IOperationable
 	 */
-	IOperation create(String operationType);
+	IOperationable create(String operationType);
 	
 }

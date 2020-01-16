@@ -4,23 +4,23 @@
 package com.quedacoder.classes;
 
 import com.quedacoder.interfaces.AbstractFactory;
-import com.quedacoder.interfaces.IOperation;
+import com.quedacoder.interfaces.IOperationable;
 
 /**
  * @author quedacoder
  * Factory class to handle the creation of Calculator operation classes
  */
-public class OperationFactory implements AbstractFactory<IOperation>{
+public class OperationFactory implements AbstractFactory<IOperationable>{
 
 	/**
-	 * Creates class instance of operation given that implements a common interface IOperation
+	 * Creates class instance of operation given that implements a common interface IOperationable
 	 * @param operationType
-	 * @return IOperation
+	 * @return IOperationable
 	 */
 	@Override
-	public IOperation create(String operationType) {
+	public IOperationable create(String operationType) {
 		
-		IOperation opp = null;
+		IOperationable opp = null;
 		
 		switch(operationType.toLowerCase()) {
 			case "addition":

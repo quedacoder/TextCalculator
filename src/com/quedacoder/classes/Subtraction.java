@@ -3,16 +3,16 @@
  */
 package com.quedacoder.classes;
 
-import com.quedacoder.interfaces.IOperation;
+import com.quedacoder.interfaces.IOperationable;
 
 /**
  * @author quedacoder
  * Class to perform subtraction on two given numbers
  */
-public class Subtraction implements IOperation {
+public class Subtraction implements IOperationable {
 
 	/**
-	 * calculate method - implements IOperation interfaces and performs
+	 * calculate method - implements IOperationable interfaces and performs
 	 * subtraction of two number of type double
 	 * @param firstNumber double
 	 * @param secondNumber double

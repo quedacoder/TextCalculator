@@ -11,7 +11,7 @@ import com.quedacoder.classes.FactoryProvider;
 import com.quedacoder.enums.Operations;
 import com.quedacoder.exceptions.InvalidCalculatorOperation;
 import com.quedacoder.interfaces.AbstractFactory;
-import com.quedacoder.interfaces.IOperation;
+import com.quedacoder.interfaces.IOperationable;
 
 /**
  * Main program for the Text Calculator Application Users will be able use Text
@@ -118,7 +118,7 @@ public class CalculatorApp {
 			if (!quit && !specialCommand && !error) {
 
 				// ------ Perform Operation ------ //
-				IOperation operationChoice = operationsFactory.create(operationType.getDisplayValue());
+				IOperationable operationChoice = operationsFactory.create(operationType.getDisplayValue());
 				result = operationChoice.calculate(firstNumber, secondNumber);
 				printResult(result, operation, firstNumber, secondNumber);
 
@@ -234,7 +234,7 @@ public class CalculatorApp {
 	 * @param result    double
 	 * @param operation String
 	 * @param number1   double
-	 * @param nubmer2   double
+	 * @param number2   double
 	 *
 	 */
 	public static void printResult(double result, String operation, double number1, double number2) {

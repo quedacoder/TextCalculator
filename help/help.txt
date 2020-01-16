@@ -6,6 +6,13 @@
 **-- HELP - function to display supported function and
             operations that can be used with the Calculator
             
+**-- INSTRUCTIONS 
+1. Enter your first number or HELP
+   - HELP will only be accepted on first input
+2. Enter one of the supported operations (see list and descriptions below)
+3. Enter second number and press enter
+
+            
 *----- SUPPORTED OPERATIONS
 
 -----------------------------------------------------------
@@ -26,4 +33,7 @@
 -----------------------------------------------------------
 | R                | Provide Nth Root of second number    |
 |                  | entered                              |
+-----------------------------------------------------------
+| -                | Subtract two numbers and provide     |
+|                  | result                               |
 -----------------------------------------------------------

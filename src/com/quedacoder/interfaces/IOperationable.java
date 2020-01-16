@@ -7,7 +7,7 @@ package com.quedacoder.interfaces;
  * @author quedacoder
  * Interface for basic operations
  */
-public interface IOperation {
+public interface IOperationable {
 	
 	/**
 	 * 

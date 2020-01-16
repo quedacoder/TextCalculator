@@ -1,15 +1,15 @@
 package com.quedacoder.classes;
 
-import com.quedacoder.interfaces.IOperation;
+import com.quedacoder.interfaces.IOperationable;
 
 /**
  * @author quedacoder
  * Class to raise a given number to any power
  */
-public class Power implements IOperation {
+public class Power implements IOperationable {
 
 	/**
-	 * calculate method - implements IOperation interfaces and performs
+	 * calculate method - implements IOperationable interfaces and performs
 	 * power of a given number
 	 * @param firstNumber double
 	 * @param secondNumber double
